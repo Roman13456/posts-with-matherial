@@ -1,24 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
-
+import Posts from './components/POSTS';
+import {Route, Routes} from 'react-router-dom';
+import PostInfo from './components/PostInfo/PostInfo';
+import NotFound from './components/NotFound/NotFound';
+import PostPage from './components/PostPage/PostPage';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route index element={<Posts/>}/>
+        <Route path='post/:postId' element={<PostPage />}></Route>
+        <Route path='postForm/:mode' element={<PostInfo />}>
+          <Route path='post/:postId'/>
+        </Route>
+        {/* <Route path='postForm/:postId' element={<PostInfo />}></Route> */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+
+    </>
+
   );
 }
 
